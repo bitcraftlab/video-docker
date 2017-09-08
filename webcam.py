@@ -2,11 +2,7 @@ import time
 import os
 import cv2
 
-from options.test_options import TestOptions
-from data.data_loader import CreateDataLoader
-from models.models import create_model
-
-global fullscreen, capture, model
+global fullscreen
 fullscreen = True
 
 def setupNeuralNetwork():
