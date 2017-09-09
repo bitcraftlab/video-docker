@@ -2,7 +2,8 @@ import time
 import os
 import cv2
 
-global fullscreen
+
+global fullscreen, capture, model
 fullscreen = True
 
 def setupNeuralNetwork():
@@ -11,7 +12,7 @@ def setupNeuralNetwork():
 
 def getCameraCapture(id = 0):
     """ get video from the webcam """
-    cap = skvideo.io.VideoCapture(id)
+    cap = cv2.VideoCapture(id)
     shape = getShape(cap)
     return cap, shape
 
@@ -31,7 +32,7 @@ def toggleFullscreen():
     fullscreen = not fullscreen
     if fullscreen:
         # cv2.setWindowProperty('window', cv2.WND_PROP_FULLSCREEN, cv2.cv.CV_WINDOW_FULLSCREEN)
-        cv2.setWindowProperty('window', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_AUTOSIZE)
+        cv2.setWindowProperty('window', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
     else:
         # cv2.setWindowProperty('window', cv2.WND_PROP_FULLSCREEN, cv2.cv.CV_WINDOW_AUTOSIZE)
         cv2.setWindowProperty('window', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_NORMAL)
@@ -61,7 +62,7 @@ if __name__ == '__main__':
 
     # keep looking for the camera, until it's available
     while True:
-        capture, shape = getCameraCapture(1)
+        capture, shape = getCameraCapture(-1)
         if capture and shape[0] > 0:
             break
         time.sleep(5)
@@ -74,9 +75,9 @@ if __name__ == '__main__':
     capture.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
     # create a window that can be resized to fullscreen
-    cv2.namedWindow('window', cv2.WND_PROP_FULLSCREEN)
-    cv2.setWindowProperty('window', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_NORMAL)
-    cv2.resizeWindow('window', width, height)
+    cv2.namedWindow('window', cv2.WINDOW_NORMAL)
+    cv2.setWindowProperty('window', cv2.WND_PROP_FULLSCREEN, cv2.WINDOW_FULLSCREEN)
+    # cv2.resizeWindow('window', width, height)
 
     start = time.time()
     frame = 0
