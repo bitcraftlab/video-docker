@@ -6,7 +6,7 @@
 
 # ffmpeg -f h264 -i tcp://127.0.0.1:2277 -f v4l2 /dev/video0
 
-SERVER="tcp://192.168.42.129:2277"
+SERVER="tcp://127.0.0.1"
 PORT=2277
 FORMAT=h264
 DEVICE="/dev/video0"
@@ -14,7 +14,6 @@ BUFFER=1k
 
 while true
 do
-	ffmpeg -re -f $FORMAT -i $SERVER:$PORT -f v4l2 -bufsize $BUFFER $DEVICE
-	# ffmpeg -f $FORMAT -i $SERVER:$PORT -f v4l2 -bufsize $BUFFER $DEVICE
+	ffmpeg -f $FORMAT -i $SERVER:$PORT -f v4l2 -bufsize $BUFFER $DEVICE
 	sleep 5
 done

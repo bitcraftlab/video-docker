@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# kill all the scripts on termination
+trap "kill 0" SIGINT
+
 # start streaming to the camera
 stream-to-cam.sh &
 STREAM_PID=$!

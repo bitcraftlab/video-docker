@@ -9,12 +9,12 @@
 APPDIR="$(dirname $(readlink -f $0))/.."
 
 VIDEO="$APPDIR/videos/hof.mp4"
-PORT=2000
+PORT=2277
 FORMAT=h264
 SPEED=200k
 
 while true
 do
-	pv --quiet --rate-limit $SPEED $VIDEO | nc -t -l $PORT 
+	pv --quiet --rate-limit $SPEED $VIDEO | nc -t -l $PORT
+	# pv --rate-limit $SPEED $VIDEO | nc -t -l $PORT 
 done
-

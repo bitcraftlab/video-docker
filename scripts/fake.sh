@@ -1,11 +1,14 @@
 #!/bin/bash
 
+# kill all the scripts on termination
+trap "kill 0" SIGINT
+
 # start streaming an incoming video
 fake-incoming-video.sh &
 STREAM1_PID=$!
 
 # start streaming to the camera
-stream-to-cam.sh &
+local-stream-to-cam.sh &
 STREAM2_PID=$!
 
 # run the app
