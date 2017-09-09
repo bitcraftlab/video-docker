@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=REAL app
+Icon=utilities-terminal
+Comment=Start the Exhibition
+Type=Application
+Terminal=true
+Exec=run.sh

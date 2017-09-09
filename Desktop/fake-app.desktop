@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=FAKE app
+Icon=utilities-terminal
+Comment=Fake the camera feed
+Type=Application
+Terminal=true
+Exec=fake.sh
